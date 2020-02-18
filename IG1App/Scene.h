@@ -7,19 +7,29 @@
 
 #include "Camera.h"
 #include "Entity.h"
+#include "Texture.h"
 
 #include <vector>
+
+#define TEXTURES_FOLDER "../Bmps/"
+#define TEXTURE_FLOOR TEXTURES_FOLDER + "baldosaC.bmp"
 
 //-------------------------------------------------------------------------
 
 class Scene	
 {
 private:
+
+	Texture* floor;
+
 	MyTrianguloRGB* colorTriangle;
 
 public:
 	Scene() {
 		colorTriangle = new MyTrianguloRGB(30, 200.0, 0.0);
+
+		floor = new Texture();
+		floor->load((std::string)TEXTURE_FLOOR);
 	}
 	~Scene() { free(); resetGL(); };
 
@@ -36,6 +46,8 @@ protected:
 	void free();
 	void setGL();
 	void resetGL();
+
+	std::vector<Texture*> gTextures;
 
 	std::vector<Abs_Entity*> gObjects;  // Entities (graphic objects) of the scene
 };

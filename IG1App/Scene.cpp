@@ -40,6 +40,8 @@ void Scene::init()
 void Scene::free() 
 { // release memory and resources   
 
+	delete floor; floor = nullptr;
+
 	for (Abs_Entity* el : gObjects)
 	{
 		delete el;  el = nullptr;
@@ -52,12 +54,24 @@ void Scene::setGL()
 	glClearColor(0.0, 0.0, 0.0, 1.0);  // background color (alpha=1 -> opaque)
 	glEnable(GL_DEPTH_TEST);  // enable Depth test 
 
+	/*
+	 * Velas sends kisses and hugs from the past <3
+	 * Velas also approves this
+	 *
+	 * GL_REPLACE Utilizar exclusivamente la textura: C = T(s,t)
+     * GL_MODULATE. Modular ambos colores: C = C * T(s,t)
+     * GL_ADD. Sumar ambos colores: C = C + T(s,t)
+	 */
+	floor->bind(GL_MODULATE); // Modulate mixes color and texture.
+
 }
 //-------------------------------------------------------------------------
 void Scene::resetGL() 
 {
 	glClearColor(.0, .0, .0, .0);  // background color (alpha=1 -> opaque)
 	glDisable(GL_DEPTH_TEST);  // disable Depth test 	
+
+	floor->unbind();
 }
 //-------------------------------------------------------------------------
 
