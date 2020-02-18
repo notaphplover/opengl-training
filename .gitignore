@@ -22,4 +22,8 @@ Release
 ipch
 *sdf
 
+*.exe
+*.pdb
+*.ilk
+
 /.vs

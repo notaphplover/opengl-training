@@ -126,11 +126,7 @@ void MyTrianguloRGB::update() {
 	const GLdouble selfAngle = - this->deltaElapsed;
 	const GLdouble loopAngle = this->deltaElapsed;
 
-	auto matrix = dmat4(1);
-	
-
-	//matrix = glm::rotate(matrix, loopAngle, dvec3(0.0, 0.0, 1.0));
-	matrix = glm::translate(matrix, dvec3(this->loopRadius * cos(loopAngle), this->loopRadius * sin(loopAngle), 0.0));
+	auto matrix = glm::translate(dmat4(1), dvec3(this->loopRadius * cos(loopAngle), this->loopRadius * sin(loopAngle), 0.0));
 	matrix = glm::rotate(matrix, selfAngle, dvec3(0.0, 0.0, 1.0));
 
 	this->setModelMat(matrix);
