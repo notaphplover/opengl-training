@@ -52,6 +52,7 @@ private:
 
 	static Mesh* generatePolygonBase(GLuint numL, GLuint numP, int mPrimitive, GLdouble rd);
 	static glm::dvec4* generateRandomColor();
+	std::vector<glm::dvec2> vTexCoords;
 };
 //-------------------------------------------------------------------------
 

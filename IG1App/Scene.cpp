@@ -22,6 +22,12 @@ void Scene::init()
 
 	// Transforms
 
+	int i = 0;
+	for (std::string pathToText : TEXTURES) {
+		gTextures[i]->load(BASE_PATH_TO_BMPS + pathToText); // el segundo argumento inica la opacidad de la textura, por defecto está a 255(si no le pones nada)
+		i++;
+	}
+
 	// Rectánglo de colores
 	gObjects.push_back(new MyRectangleRGB(1000, 500));
 	// Triangulo de colorines
@@ -44,20 +50,27 @@ void Scene::free()
 	{
 		delete el;  el = nullptr;
 	}
+
+	for (Texture* tex : gTextures) {
+		delete tex; tex = nullptr;
+	}
+
 }
 //-------------------------------------------------------------------------
 void Scene::setGL() 
 {
 	// OpenGL basic setting
 	glClearColor(0.0, 0.0, 0.0, 1.0);  // background color (alpha=1 -> opaque)
-	glEnable(GL_DEPTH_TEST);  // enable Depth test 
+	glEnable(GL_DEPTH_TEST);  // enable Depth test
+	glEnable(GL_TEXTURE_2D);
 
 }
 //-------------------------------------------------------------------------
 void Scene::resetGL() 
 {
 	glClearColor(.0, .0, .0, .0);  // background color (alpha=1 -> opaque)
-	glDisable(GL_DEPTH_TEST);  // disable Depth test 	
+	glDisable(GL_DEPTH_TEST);  // disable Depth test 
+	glDisable(GL_TEXTURE_2D);
 }
 //-------------------------------------------------------------------------
 

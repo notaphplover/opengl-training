@@ -33,7 +33,9 @@ void EjesRGB::render(dmat4 const& modelViewMat) const
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
 		glLineWidth(2);
+		mTexture->bind(GL_REPLACE); // GL_REPLACE == utiliza solo la textura. GL_MODULATE == mezla textura con colores
 		mMesh->render();
+		mTexture->unbind();
 		glLineWidth(1);
 	}
 }
@@ -56,7 +58,9 @@ void MyPolygon::render(dmat4 const& modelViewMat) const
 		upload(aMat);
 		glColor3d(_mColor.r, _mColor.g, _mColor.b);
 		glLineWidth(2);
+		mTexture->bind(GL_REPLACE); // GL_REPLACE == utiliza solo la textura. GL_MODULATE == mezla textura con colores
 		mMesh->render();
+		mTexture->unbind();
 		glColor3d(1.0, 1.0, 1.0);
 		glLineWidth(1);
 	}
@@ -87,7 +91,9 @@ void MySierpinski::render(dmat4 const& modelViewMat) const
 		upload(aMat);
 		glColor4dv(value_ptr(_mColor));
 		glPointSize(2);
+		mTexture->bind(GL_REPLACE); // GL_REPLACE == utiliza solo la textura. GL_MODULATE == mezla textura con colores
 		mMesh->render();
+		mTexture->unbind();
 		glPointSize(0);
 	}
 }
@@ -118,7 +124,9 @@ void MyTrianguloRGB::render(dmat4 const& modelViewMat) const
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		mTexture->bind(GL_REPLACE); // GL_REPLACE == utiliza solo la textura. GL_MODULATE == mezla textura con colores
 		mMesh->render();
+		mTexture->unbind();
 	}
 }
 
@@ -150,7 +158,9 @@ void MyRectangleRGB::render(dmat4 const& modelViewMat) const
 
 		glPolygonMode(GL_FRONT, GL_FILL);
 		glPolygonMode(GL_BACK, GL_LINE);
+		mTexture->bind(GL_REPLACE); // GL_REPLACE == utiliza solo la textura. GL_MODULATE == mezla textura con colores
 		mMesh->render();
+		mTexture->unbind();
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 }

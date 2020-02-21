@@ -6,6 +6,7 @@
 #include <glm.hpp>
 
 #include "Mesh.h"
+#include "Texture.h"
 
 //-------------------------------------------------------------------------
 
@@ -31,6 +32,13 @@ protected:
 	
 	// transfers modelViewMat to the GPU
 	virtual void upload(glm::dmat4 const& mModelViewMat) const; 
+
+	void setTexture(Texture* tex) { mTexture = tex; }
+
+	Texture* mTexture = nullptr;
+
+
+	
 };
 //-------------------------------------------------------------------------
 

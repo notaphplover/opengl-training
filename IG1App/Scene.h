@@ -9,13 +9,22 @@
 #include "Entity.h"
 
 #include <vector>
+#include "Texture.h"
+
+#include <String.h>
+#include <set>
 
 //-------------------------------------------------------------------------
 
 class Scene	
 {
 private:
+
 	MyTrianguloRGB* colorTriangle;
+	std::vector<Texture*> gTextures;
+	const std::string BASE_PATH_TO_BMPS = "../Bmps/";
+	const std::vector<std::string> TEXTURES = { "baldosaC.bmp", "baldosaF.bmp", "baldosaP.bmp", "container.bmp", "grass.bmp",
+		"papelC.bmp", "", "papelE.bmp", "windowC.bmp", "windowV.bmp", "Zelda.bmp" };
 
 public:
 	Scene() {
